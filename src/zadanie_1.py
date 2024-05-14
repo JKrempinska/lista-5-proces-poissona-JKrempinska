@@ -11,9 +11,27 @@ def poissons(T, lamb):
             S.append(t)
     return S
 
-for i in range(10):
-    x = poissons(5,1)
+
+for i in range(20):
+    x = poissons(100,1)
     y = np.arange(0, len(x))
     plt.step(x,y)
-
 plt.show()
+
+
+def nt_value(t, lamb):
+    return lamb * t
+
+ts = np.zeros(1000)
+for i in range(1000):
+    p = poissons(100,1)
+    ts[i] = p[3]
+
+plt.boxplot(ts)
+r, l = plt.xlim()
+plt.hlines(nt_value(3,1),xmin=r, xmax=l)
+#plt.hist(ts, bins=20)
+plt.show()
+
+
+
